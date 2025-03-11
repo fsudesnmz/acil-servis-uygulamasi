@@ -6,6 +6,7 @@ Bu proje, bir hastane acil servisindeki hasta yönetim sürecini simüle eden ka
 
 - [Özellikler](#özellikler)
 - [Teknik Detaylar](#teknik-detaylar)
+- [Sistem Akış Şeması](#sistem-akış-şeması)
 - [Sistem Gereksinimleri](#sistem-gereksinimleri)
 - [Kullanım](#kullanım)
   - [Yeni Hasta Ekle](#1-yeni-hasta-ekle)
@@ -45,6 +46,12 @@ Bu sistem, aşağıdaki C programlama konseptlerini kullanmaktadır:
 - Rastgele Sayı Üretimi
 - Pointer İşlemleri
 - Koşullu Mantık ve Karar Verme Algoritmaları
+  
+## Sistem Akış Şeması
+
+Sistemin genel çalışma prensibi aşağıdaki akış şemasında gösterilmiştir:
+
+![Acil Servis Akış Şeması](images/flowchart.png)
 
 ## Sistem Gereksinimleri
 
