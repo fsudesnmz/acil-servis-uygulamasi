@@ -6,49 +6,49 @@
 #define MAX_PATIENTS 100
 #define MAX_DOCTORS 5
 
-// Hasta yapýsý
+// Hasta yapÃ½sÃ½
 typedef struct {
     char name[50];
     char surname[50];
     int age;
-    char tc_no[12]; // TC kimlik numarasý
-    char triaj[10]; // Triaj durumu: kýrmýzý, sarý, yeþil
-    char complaint[100]; // Hasta þikayeti
-    char doctor[50]; // Yönlendirilen doktor
-    char diagnosis[100]; // Teþhis (doktor tarafýndan girilir)
-    char medication[100]; // Ýlaç (doktor tarafýndan girilir)
-    char hl7_record[500]; // HL7 formatýnda hasta kaydý
-    int prescription_no; // Reçete numarasý
+    char tc_no[12]; // TC kimlik numarasi
+    char triaj[10]; // Triaj durumu: kirmizi, sari, yesil
+    char complaint[100]; // Hasta sikayeti
+    char doctor[50]; // YÃ¶nlendirilen doktor
+    char diagnosis[100]; // Teshis (doktor tarafindan girilir)
+    char medication[100]; // IlaÃ§ (doktor tarafindan girilir)
+    char hl7_record[500]; // HL7 formatinda hasta kaydi
+    int prescription_no; // ReÃ§ete numarasi
 } Patient;
 
-// Kuyruk yapýsý
+// Kuyruk yapÃ½sÃ½
 typedef struct {
     Patient patients[MAX_PATIENTS];
     int front, rear;
 } Queue;
 
-// Doktor yapýsý
+// Doktor yapisi
 typedef struct {
     char name[50];
-    char specialty[50]; // Uzmanlýk alaný
+    char specialty[50]; // Uzmanlik alani
 } Doctor;
 
-// Kuyruk baþlatma
+// Kuyruk baslatma
 void initQueue(Queue* q) {
     q->front = q->rear = -1;
 }
 
-// Kuyruk boþ mu kontrolü
+// Kuyruk bos mu kontrolÃ¼
 int isEmpty(Queue* q) {
     return q->front == -1;
 }
 
-// Kuyruk dolu mu kontrolü
+// Kuyruk dolu mu kontrolÃ¼
 int isFull(Queue* q) {
     return (q->rear + 1) % MAX_PATIENTS == q->front;
 }
 
-// Kuyruða hasta ekleme
+// Kuyruga hasta ekleme
 void enqueue(Queue* q, Patient p) {
     if (isFull(q)) {
         printf("Kuyruk dolu! Hasta eklenemiyor.\n");
@@ -62,10 +62,10 @@ void enqueue(Queue* q, Patient p) {
     q->patients[q->rear] = p;
 }
 
-// Kuyruktan hasta çýkarma
+// Kuyruktan hasta Ã§ikarma
 Patient dequeue(Queue* q) {
     if (isEmpty(q)) {
-        printf("Kuyruk bos! Hasta cýkarilamiyor.\n");
+        printf("Kuyruk bos! Hasta cÃ½karilamiyor.\n");
         Patient emptyPatient = {"", "", 0, "", "", "", "", "", "", "", 0};
         return emptyPatient;
     }
@@ -78,7 +78,7 @@ Patient dequeue(Queue* q) {
     return p;
 }
 
-// Kuyruktaki hastalarý listeleme
+// Kuyruktaki hastalari listeleme
 void printQueue(Queue* q) {
     if (isEmpty(q)) {
         printf("Kuyruk bos.\n");
@@ -92,7 +92,7 @@ void printQueue(Queue* q) {
     printPatient(q->patients[q->rear]);
 }
 
-// Kuyruktan hasta silme (TC kimlik numarasýna göre)
+// Kuyruktan hasta silme (TC kimlik numarasina gÃ¶re)
 void deletePatient(Queue* q, const char* tc_no) {
     if (isEmpty(q)) {
         printf("Kuyruk bos! Silinecek hasta yok.\n");
@@ -128,7 +128,7 @@ void deletePatient(Queue* q, const char* tc_no) {
     }
 }
 
-// Belirli bir hastayý görüntüleme (TC kimlik numarasýna göre)
+// Belirli bir hastayi gÃ¶rÃ¼ntÃ¼leme (TC kimlik numarasina gÃ¶re)
 void viewPatient(Queue* q, const char* tc_no) {
     if (isEmpty(q)) {
         printf("Kuyruk bos! Goruntulenecek hasta yok.\n");
@@ -151,17 +151,17 @@ void viewPatient(Queue* q, const char* tc_no) {
         printf("Hasta bulundu:\n");
         printPatient(q->patients[i]);
     } else {
-        printf("TC kimlik numarasi ile eslesen hasta bulunamadý.\n");
+        printf("TC kimlik numarasi ile eslesen hasta bulunamadÃ½.\n");
     }
 }
 
-// Doktorlarý baþlatma
+// Doktorlari baslatma
 void initDoctors(Doctor doctors[], int size) {
     strcpy(doctors[0].name, "Dr. Ahmet Yilmaz");
     strcpy(doctors[0].specialty, "Kardiyoloji");
 
     strcpy(doctors[1].name, "Dr. Mehmet Kaya");
-    strcpy(doctors[1].specialty, "Nöroloji");
+    strcpy(doctors[1].specialty, "NÃ¶roloji");
 
     strcpy(doctors[2].name, "Dr. Ayse Demir");
     strcpy(doctors[2].specialty, "Genel Cerrahi");
@@ -173,24 +173,24 @@ void initDoctors(Doctor doctors[], int size) {
     strcpy(doctors[4].specialty, "Dahiliye");
 }
 
-// Hasta þikayetine göre uygun doktoru bulma
+// Hasta sikayetine gÃ¶re uygun doktoru bulma
 char* findDoctor(Doctor doctors[], int size, const char* complaint) {
-    if (strstr(complaint, "kalp") != NULL || strstr(complaint, "göðüs") != NULL) {
+    if (strstr(complaint, "kalp") != NULL || strstr(complaint, "gÃ¶Ã°Ã¼s") != NULL) {
         return doctors[0].name; // Kardiyoloji
-    } else if (strstr(complaint, "baþ aðrýsý") != NULL || strstr(complaint, "sinir") != NULL) {
-        return doctors[1].name; // Nöroloji
+    } else if (strstr(complaint, "baÃ¾ aÃ°rÃ½sÃ½") != NULL || strstr(complaint, "sinir") != NULL) {
+        return doctors[1].name; // NÃ¶roloji
     } else if (strstr(complaint, "ameliyat") != NULL || strstr(complaint, "yaralanma") != NULL) {
         return doctors[2].name; // Genel Cerrahi
     } else if (strstr(complaint, "kemik") != NULL || strstr(complaint, "eklem") != NULL) {
         return doctors[3].name; // Ortopedi
-    } else if (strstr(complaint, "öksürük") != NULL || strstr(complaint, "ateþ") != NULL || strstr(complaint, "kusma") != NULL) {
+    } else if (strstr(complaint, "Ã¶ksÃ¼rÃ¼k") != NULL || strstr(complaint, "ateÃ¾") != NULL || strstr(complaint, "kusma") != NULL) {
         return doctors[4].name; // Dahiliye
     } else {
-        return doctors[4].name; // Dahiliye (varsayýlan)
+        return doctors[4].name; // Dahiliye (varsayilan)
     }
 }
 
-// HL7 formatýnda hasta kaydý oluþturma
+// HL7 formatinda hasta kaydi olusturma
 void createHL7Record(Patient* p) {
     sprintf(p->hl7_record, "MSH|^~\\&|HOSPITAL|ER|LAB|202310101200||ADT^A01|123456|P|2.5\n"
                            "PID|||%s^%s||%d|||%s\n"
@@ -200,23 +200,23 @@ void createHL7Record(Patient* p) {
                            "PRB|||%d", p->name, p->surname, p->age, p->tc_no, p->doctor, p->diagnosis, p->medication, p->prescription_no);
 }
 
-// Reçete numarasý üretme
+// ReÃ§ete numarasi Ã¼retme
 int generatePrescriptionNo() {
     return rand() % 1000000;
 }
 
-// Hasta bilgilerini ekrana yazdýrma
+// Hasta bilgilerini ekrana yazdirma
 void printPatient(Patient p) {
     printf("Hasta Adi: %s %s\n", p.name, p.surname);
     printf("Yas: %d\n", p.age);
     printf("TC Kimlik No: %s\n", p.tc_no);
     printf("Triaj Durumu: %s\n", p.triaj);
-    printf("Þikayet: %s\n", p.complaint);
+    printf("Ãžikayet: %s\n", p.complaint);
     printf("Yonlendirilen Doktor: %s\n", p.doctor);
     printf("Teshis: %s\n", p.diagnosis);
     printf("Ilac: %s\n", p.medication);
-    printf("Reçete No: %d\n", p.prescription_no);
-    printf("HL7 Kaydý:\n%s\n", p.hl7_record);
+    printf("ReÃ§ete No: %d\n", p.prescription_no);
+    printf("HL7 KaydÃ½:\n%s\n", p.hl7_record);
     printf("--------------------------\n");
 }
 
@@ -234,36 +234,36 @@ void addPatient(Queue* q, Doctor doctors[], int size) {
     printf("Triaj Durumu (kirmizi/sari/yesil): ");
     scanf("%s", p.triaj);
     printf("Hasta Sikayeti (Oksuruk, ates, kusma, vs.): ");
-    scanf(" %[^\n]", p.complaint); // Boþluklu girdi almak için
+    scanf(" %[^\n]", p.complaint); // Bosluklu girdi almak iÃ§in
     strcpy(p.doctor, findDoctor(doctors, size, p.complaint)); // Uygun doktoru bul ve kopyala
-    p.prescription_no = generatePrescriptionNo(); // Reçete numarasý üret
+    p.prescription_no = generatePrescriptionNo(); // ReÃ§ete numarasi Ã¼ret
     fillDoctorInfo(&p); // Doktor bilgilerini otomatik doldur
-    enqueue(q, p); // Kuyruða hasta ekle
+    enqueue(q, p); // KuyruÃ°a hasta ekle
     printf("Hasta basariyla eklendi ve %s doktoruna yonlendirildi.\n", p.doctor);
 }
 
-// Doktor bilgilerini otomatik doldurma (sistem tarafýndan)
+// Doktor bilgilerini otomatik doldurma (sistem tarafindan)
 void fillDoctorInfo(Patient* p) {
-    if (strstr(p->complaint, "kalp") != NULL || strstr(p->complaint, "göðüs") != NULL) {
+    if (strstr(p->complaint, "kalp") != NULL || strstr(p->complaint, "gÃ¶Ã°Ã¼s") != NULL) {
         strcpy(p->diagnosis, "Kalp krizi riski");
         strcpy(p->medication, "Aspirin 100 mg");
-    } else if (strstr(p->complaint, "baþ aðrýsý") != NULL || strstr(p->complaint, "sinir") != NULL) {
+    } else if (strstr(p->complaint, "baÃ¾ aÃ°rÃ½sÃ½") != NULL || strstr(p->complaint, "sinir") != NULL) {
         strcpy(p->diagnosis, "Migren");
         strcpy(p->medication, "Parol 500 mg");
     } else if (strstr(p->complaint, "ameliyat") != NULL || strstr(p->complaint, "yaralanma") != NULL) {
-        strcpy(p->diagnosis, "Cerrahi müdahale gerekiyor");
+        strcpy(p->diagnosis, "Cerrahi mÃ¼dahale gerekiyor");
         strcpy(p->medication, "Agri kesici");
     } else if (strstr(p->complaint, "kemik") != NULL || strstr(p->complaint, "eklem") != NULL) {
-        strcpy(p->diagnosis, "Kýrýk veya çýkýk");
-        strcpy(p->medication, "Alcý ve agrý kesici");
-    } else if (strstr(p->complaint, "öksürük") != NULL || strstr(p->complaint, "ateþ") != NULL || strstr(p->complaint, "kusma") != NULL) {
+        strcpy(p->diagnosis, "KÃ½rÃ½k veya Ã§Ã½kÃ½k");
+        strcpy(p->medication, "AlcÃ½ ve agrÃ½ kesici");
+    } else if (strstr(p->complaint, "Ã¶ksÃ¼rÃ¼k") != NULL || strstr(p->complaint, "ateÃ¾") != NULL || strstr(p->complaint, "kusma") != NULL) {
         strcpy(p->diagnosis, "Grip veya enfeksiyon");
         strcpy(p->medication, "Antibiyotik ve ates dusurucu");
     } else {
         strcpy(p->diagnosis, "Genel muayene gerekiyor");
         strcpy(p->medication, "Vitamin takviyesi");
     }
-    createHL7Record(p); // HL7 kaydýný güncelle
+    createHL7Record(p); // HL7 kaydini gÃ¼ncelle
 }
 
 int main() {
@@ -273,7 +273,7 @@ int main() {
     Doctor doctors[MAX_DOCTORS];
     initDoctors(doctors, MAX_DOCTORS);
 
-    srand(time(NULL)); // Rastgele reçete numarasý üretmek için
+    srand(time(NULL)); // Rastgele reÃ§ete numarasi Ã¼retmek iÃ§in
 
     int choice;
     do {
