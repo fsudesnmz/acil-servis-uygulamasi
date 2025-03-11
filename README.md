@@ -51,7 +51,7 @@ Bu sistem, aşağıdaki C programlama konseptlerini kullanmaktadır:
 
 Sistemin genel çalışma prensibi aşağıdaki akış şemasında gösterilmiştir:
 
-![Acil Servis Akış Şeması](Proje Dökümanı/Flowchart.jpg)
+![Acil Servis Akış Şeması](ProjeDökümanı/Flowchart.jpg)
 
 ## Sistem Gereksinimleri
 
