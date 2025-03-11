@@ -25,7 +25,7 @@ Program çalıştırıldığında aşağıdaki menü görüntülenir:
 ```
 Acil Servis Uygulaması
 1. Yeni Hasta Ekle
-2. Hasta Bilgileri Görüntüle (Belirli Bir Hasta)
+2. Hasta Bilgileri Görüntüle
 3. Eklenen Tüm Hastaları Görüntüle
 4. Hasta Sil
 5. Çıkış
