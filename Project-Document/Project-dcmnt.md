@@ -94,7 +94,7 @@ PRB|||[Reçete No]
 5. Hasta kuyruğa eklenir
 ```
 ### 5.1 Sistem Akış Şeması
-![Project-Document](Project-Document/Flowchart.jpg)
+![Acil Servis Akış Şeması](Project-Document/Flowchart.jpg)
 
 ## 6. Kullanıcı Arayüzü
 
