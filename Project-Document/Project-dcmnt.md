@@ -105,17 +105,3 @@ Acil Servis Uygulaması
 5. Çıkış
 ```
 
-## 7. Kısıtlamalar
-
-- Maksimum 100 hasta kaydı
-- 5 doktor tanımlanmıştır
-- Veriler kalıcı olarak saklanmamaktadır
-- TC kimlik numarası doğrulama yoktur
-
-## 8. Gelecek Geliştirmeler
-
-- Veri tabanı entegrasyonu
-- Grafiksel kullanıcı arayüzü
-- Triaj önceliğine göre sıralama
-- Doktor ve hasta istatistikleri
-- Randevu sistemi entegrasyonu
