@@ -93,8 +93,6 @@ PRB|||[Reçete No]
 4. HL7 kaydı oluşturulur
 5. Hasta kuyruğa eklenir
 ```
-### 5.1 Sistem Akış Şeması
-![Sistem Akış Şeması](Project-Document/Flowchart.jpg)
 
 ## 6. Kullanıcı Arayüzü
 
